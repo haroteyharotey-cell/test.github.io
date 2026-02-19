@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>chhong_lisa</title>
+<style>
+    body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: 1.2rem;
+        margin: 10px;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    #result {
+        font-size: 1.5rem;
+        color: #d6336c;
+        margin-top: 20px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+        h1 {
+            font-size: 1.5rem;
+        }
+        #result {
+            font-size: 1.2rem;
+        }
+    }
+</style>
+</head>
+<body>
+
+<h1>Do you love me?</h1>
+<button id="real" onclick="checkLove('real')">Yes</button>
+<button id="fake">No</button>
+<hr>
+Result: <h3 id="result"></h3>
+
+<script>
+const fakeButton = document.getElementById("fake");
+
+// Function to move the "No" button randomly
+function moveButton() {
+    const winWidth = window.innerWidth;
+    const winHeight = window.innerHeight;
+    const btnWidth = fakeButton.offsetWidth;
+    const btnHeight = fakeButton.offsetHeight;
+
+    const x = Math.random() * (winWidth - btnWidth - 20); // keep inside screen
+    const y = Math.random() * (winHeight - btnHeight - 20);
+
+    fakeButton.style.position = "absolute";
+    fakeButton.style.left = x + "px";
+    fakeButton.style.top = y + "px";
+}
+
+// Run away on mouse hover
+fakeButton.addEventListener("mouseenter", moveButton);
+
+// Also run away on touch (mobile support)
+fakeButton.addEventListener("touchstart", moveButton);
+
+// Handle "Yes" button click
+function checkLove(love) {
+    if (love === "real") {
+        document.getElementById("result").innerHTML = "I LOVE YOU TOO ❤️";
+    }
+}
+</script>
+
+</body>
+</html>
